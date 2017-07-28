@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-navbar ion-navbar color="orangee">
+    <ion-title>
+      <!-- <button ion-button block (click)="closeModal()">Close</button> -->
+ <div style="float:right"  (click)="closeModal()"> 
+      <ion-icon ios="ios-backspace" md="md-backspace"></ion-icon>
+      </div>
+      addtocard
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  
+  <ion-card>
+
+  <ion-item>
+    <!-- <ion-avatar item-start>
+      <img src="{{baseurl+dishorder.item_image_url}}">
+    </ion-avatar> -->
+    <h2>{{dishorder.item_name}}</h2>
+   
+  </ion-item>
+
+  
+
+  <ion-card-content>
+    <p>{{dishorder.item_desc}}</p>
+    <p>{{dishorder.prices[0].value}}</p>
+   
+  </ion-card-content>
+
+  
+
+  <img src="{{baseurl+dishorder.item_image_url}}">
+  
+   <em>E.g. extra cheese, sauce on the side etc. Any additional charges will be directly charged to your credit card.
+                  <span>And remember to inform the restaurant of all dietary restrictions and food allergies in the box below.</span></em>
+  
+                  
+   <div *ngIf="addonapi">
+   <div *ngFor="let items of addonapi"> 
+   oko
+     
+          <div *ngFor="let items2 of items.addons">
+              {{items2.name}}
+              <div *ngFor="let items3 of items2.options" >
+
+                 
+                <ion-list radio-group [(ngModel)]="relationship">
+                    <ion-item>
+                      <ion-label>{{items3.name}}</ion-label>
+                      <ion-radio value="{{items3.name}}" checked></ion-radio>
+                    </ion-item>
+                </ion-list>
+
+
+                </div> 
+
+          </div>     
+   </div>
+    
+  </div>                 
+   <textarea style="width:100%" placeholder="Enter extra info"></textarea>
+   
+                  <ion-row>
+    <ion-col>
+      <button  (click)="removequantity()" ion-button icon-left clear small>
+      <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
+       </button>
+    </ion-col>
+    <ion-col>
+      
+        <div> {{totalctr}} </div>
+      
+    </ion-col>
+    <ion-col>
+      <button (click)="addquantity(dishorder)" ion-button icon-left clear small>
+         <ion-icon ios="ios-add" md="md-add"></ion-icon>
+
+        <!-- <div>+</div> -->
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      
+      <span>  {{dishorder.prices[0].value}}$ </span>
+      
+    </ion-col>
+      <ion-col center text-center>
+     <span>  {{ dishorder.prices[0].value  * totalctr  }} $ </span>
+    </ion-col>
+  </ion-row> 
+  
+  <button (click)="Addtoorder(totalctr)" ion-button full color="light" > Add To Order </button>
+
+
+
+</ion-card>
+
+</ion-content>

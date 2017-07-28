@@ -1,0 +1,40 @@
+
+  <!-- <ion-navbar color="orangee"> -->
+
+
+ <!-- <div class="scroll-tabs">
+  <ion-scroll #scrollTab class="scroll-container" scrollX="true">
+<ion-segment *ngIf="fapi2">
+      <ion-segment-button class="section" *ngFor="let item of fapi2;let i=index" value="{{i}}" (tap)="selectTab(i) ">
+           {{item.item_name}}
+      </ion-segment-button>
+</ion-segment>
+  </ion-scroll></div> -->
+  <!-- </ion-navbar> -->
+
+<div class="scroll-tabs">
+   <ion-scroll #scrollTab class="scroll-container" scrollX="true">
+    <div *ngIf="fapi2">
+    <div class="section" *ngFor="let item of fapi2;let i=index"  (tap)="selectTab(i)">
+      <button  >
+         {{item.item_name}}
+      </button>
+    </div>
+    </div>
+  </ion-scroll>
+</div>
+                       
+
+
+  <ion-slides *ngIf="fapi2" #pageSlider (ionSlideWillChange)="changeWillSlide($event)">
+   <ion-slide *ngFor="let item of fapi2;let i=index">
+     <h1>{{item.item_name}}</h1>
+   </ion-slide>
+  
+ </ion-slides> 
+
+
+
+
+
+

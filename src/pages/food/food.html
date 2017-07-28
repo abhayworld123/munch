@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar ion-navbar color="orangee">
+    <ion-title>
+      <!-- <button ion-button block (click)="closeModal()">Close</button> -->
+ <div style="float:right"  (click)="closeModal()"> 
+      <ion-icon ios="ios-backspace" md="md-backspace"></ion-icon>
+      </div>
+     <span *ngIf="menuoverviewdata"> {{menuoverviewdata.name}} </span> 
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="menuoverviewdata">
+   <!-- <ion-img width="80" height="80" [src]="baseurl + menuoverviewdata.cover_image"></ion-img>    -->
+  <img class="bannerimg" [src] ="baseurl + menuoverviewdata.cover_image">
+  <div *ngIf="menuoverviewdata">
+      {{menuoverviewdata.name}}
+
+ {{menuoverviewdata.cuisine_offerd}}
+ {{menuoverviewdata.landmark}}
+ {{menuoverviewdata.short_address}}
+ Overview {{menuoverviewdata.description}}
+{{menuoverviewdata.is_review}}
+  
+  <!-- <div *ngFor="let review of menuoverviewdata.restaurant_reviews">  
+     {{review.review_id}}
+       
+  </div> -->
+ <div *ngFor="let rev of restaurantreviews " >
+          {{rev.review_id}}
+ </div>
+
+ <div *ngFor="let mostpopular of populardishes">
+       {{mostpopular.item_name}}
+
+ </div>
+
+ 
+       <div >
+ <ion-slides>
+  <ion-slide>
+    <h1>Overview</h1>
+  </ion-slide>
+  <ion-slide>
+    <h1>Menu</h1>
+    <div *ngFor="let gallary of gallary">
+       {{gallary.image}}
+
+ </div>
+  </ion-slide>
+  <ion-slide>
+     <h1>Story</h1>
+    <h1>Slide 3</h1>
+  </ion-slide>
+   <ion-slide>
+     <h1>Reviews</h1>
+    
+    <div *ngFor="let rev of restaurantreviews " >
+          {{rev.review_id}}
+ </div>
+  </ion-slide>
+</ion-slides>
+ 
+ </div> 
+
+<div *ngFor="let placetype of typeofplace">
+       {{placetype.name}}
+
+ </div> 
+
+
+ 
+   </div>
+  
+</div>
+</ion-content>

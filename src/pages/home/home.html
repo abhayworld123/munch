@@ -1,0 +1,181 @@
+<ion-header>
+  <ion-navbar color="orangee">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home {{name | capitalize}} </ion-title>
+    <span (click)="openCheckout()" class="badge-span-top">{{dataservice.globalVar}}</span>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-menu [content]="mycontent">
+
+	<ion-content>
+    <div class="cont-pro">
+      
+    </div>
+		<ion-list>
+			 <button  menuClose ion-item menuClose2 (click)="openPage(contactpage)">
+				About 
+			</button>
+			 <button  menuClose ion-item menuClose2 (click)="openPage(gallarypage)">
+			  Gallery
+			 </button>
+			<button ion-item menuClose2 >
+				Order Online
+      </button>
+      	<button ion-item menuClose2 >
+				Reserve A Table 
+      </button>
+                 
+       
+      	<button ion-item menuClose2 (click)="logout()" >
+				LogOut
+			</button>
+		</ion-list>
+	</ion-content>
+
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+
+
+
+
+ <div style="text-align:center" *ngIf="!fapi2"> ............loading-content.......... </div>
+ 
+ 
+ 
+<ion-content padding>
+<div class="scrollmenu">
+  <ion-segment> 
+    <ion-segment-button class="section" *ngFor="let item of fapi3;let i=index" value="{{i}}"  (click)="selectTab(i)" >
+           <span [innerHTML]="item.category_name"></span> 
+        </ion-segment-button>
+  </ion-segment>
+</div>
+</ion-content>
+<ion-content (ionScroll)="scrollHandler($event)" padding class="home">
+ <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<div >
+  <div *ngFor="let item of items " >
+        {{item.category_name}} ok
+  </div>
+</div>
+
+   <!-- </ion-scroll>    -->
+<div *ngIf="fapi2"> 
+   <!-- <h2 style="text-align:center"> {{fapi3.category_name}}</h2>  -->
+ <ion-slides *ngIf="fapi3" #pageSlider (ionSlideWillChange)="changeWillSlide($event)" >
+   <ion-slide *ngFor="let item of (fapi3);let f=index">
+     <h1 [innerHTML] ="item.category_name" >  </h1>
+
+     <div *ngIf="item.category_items?.length > 0">
+           
+         <ion-card  *ngFor="let items of item.category_items ;let c = index"   class="card"  (click)="presentModal(f,c,n=60)">
+          <img src="{{baseurl+items.item_image_url}}" onError="this.src=''"/>
+                  
+            <!--{{baseurl}}-->
+          <ion-card-content>
+            <ion-card-title>
+              {{items.item_name}}
+              </ion-card-title>
+              <p>
+              {{items.item_desc}}
+            </p>
+           
+          </ion-card-content>
+           <span class="pricespan">{{items.prices[0].value}} $</span>
+        </ion-card>
+           
+          
+     </div>
+
+
+     <div >
+
+    
+   
+    <ion-grid>
+    <ion-row>
+        <ion-col col-sm-12 col-md-3>
+            <div *ngFor="let item3 of item.sub_categories; let s= index "> 
+
+             <!-- <div *ngFor ="let item4 of item3.category_items">
+                {{item4.item_name}}    
+            </div>  -->
+
+       
+         <ion-card  *ngFor="let item2 of item3.category_items ; let i = index" class="card" (click)="presentModal(f,s,i)">
+          <img src="{{baseurl+item2.item_image_url}}" onError="this.src=''"/>
+                  
+            <!--{{baseurl}}-->
+          <ion-card-content>
+            <ion-card-title>
+              {{item2.item_name}}
+              </ion-card-title>
+              <p>
+              {{item2.item_desc}}
+            </p>
+           
+          </ion-card-content>
+           <span class="pricespan">{{item2.prices[0].value}} $</span>
+        </ion-card>
+           </div>
+        </ion-col>
+       
+    </ion-row>
+  </ion-grid>
+
+
+  
+  </div>
+
+  
+ 
+
+
+
+   </ion-slide>
+ </ion-slides>
+
+
+
+  
+</div>
+
+</ion-content>
+<!-- <div >
+
+    
+   
+    <ion-grid>
+    <ion-row>
+        <ion-col col-sm-12 col-md-3>
+           
+         <ion-card *ngFor="let item2 of fapi2 ; let i = index" class="card" (click)="presentModal(i)">
+                    
+          <img src="{{baseurl+item2.item_image_url}}" onError="this.src=''"/>
+                  
+          
+          <ion-card-content>
+            <ion-card-title>
+              {{item2.item_name}}
+              </ion-card-title>
+              <p>
+              {{item2.item_desc}}
+            </p>
+           
+          </ion-card-content>
+           <span class="pricespan">{{item2.prices[0].value}} $</span>
+        </ion-card>
+        </ion-col>
+       
+    </ion-row>
+  </ion-grid>
+
+
+  
+  </div> -->

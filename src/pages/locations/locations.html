@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar ion-navbar color="orangee">
+    <ion-title>
+  <!-- <div style="float:right"  (click)="closeModal()"> 
+        <ion-icon ios="ios-backspace" md="md-backspace"></ion-icon>
+        </div> -->
+
+        <div style="float:right"  (click)="closeModal()"> 
+      <ion-icon ios="ios-backspace" md="md-backspace"></ion-icon>
+      </div>
+      Locations
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list>
+    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-item>
+      <ion-icon name="ionic" item-left></ion-icon>
+       Ado Sample
+    </ion-item>
+  </ion-list> -->
+<ion-tabs>
+       <ion-tab [root]="page1" tabTitle="one" ></ion-tab>
+      <ion-tab [root]="page2"   tabTitle="two"  ></ion-tab>
+</ion-tabs>
+
+   <!-- <ion-list *ngFor="let resnames of resname; let ind of $index ">
+    
+     <button (click)="alertt(ind)" button ion-button block  >{{resnames.name}}</button>
+     
+ 
+  
+
+   </ion-list> -->
+</ion-content>

@@ -1,0 +1,44 @@
+page-swipee .slide {
+  background: dodgerblue;
+  width: calc(100% / 3);
+  height: 4px;
+  position: absolute;
+  left: 0;
+  top: calc(100% - 4px);
+  transition: left 0.3s ease-out;
+}
+
+page-swipee .segment-button {
+  border: 0 !important;
+}
+
+page-swipee .segment-button:nth-of-type(1).segment-activated ~ .slide {
+  left: calc((100% / 3) * 0);
+}
+
+page-swipee .segment-button:nth-of-type(2).segment-activated ~ .slide {
+  left: calc((100% / 3) * 1);
+}
+
+page-swipee .segment-button:nth-of-type(3).segment-activated ~ .slide {
+  left: calc((100% / 3) * 2);
+}
+
+page-swipee ion-segment {
+  display: block;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: auto;
+}
+
+page-swipee ion-segment::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+page-swipee ion-segment ion-segment-button.segment-button {
+  display: inline-block !important;
+  min-width: 100px !important;
+  width: auto !important;
+}
